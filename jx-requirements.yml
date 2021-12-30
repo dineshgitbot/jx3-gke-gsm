@@ -5,28 +5,46 @@ spec:
     enabled: false
     schedule: ""
   cluster:
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+    clusterName: tf-jx-hardy-quail
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
     gitKind: github
     gitName: github
     gitServer: https://github.com
+    gke:
+      projectNumber: "222660444021"
     kanikoFlags: --skip-unused-stages --snapshotMode=redo
+    project: jx3setup
     provider: gke
     registry: gcr.io
+    zone: us-central1-a
   environments:
   - key: dev
+    owner: dineshgitbot
+    repository: jx3-gke-gsm
   - key: staging
   - key: production
   ingress:
-    domain: ""
-    externalDNS: false
+    domain: 34.136.149.224.nip.io
+    kind: ingress
     namespaceSubDomain: -jx.
     tls:
       email: ""
       enabled: false
-      production: false
+      production: true
+  kuberhealthy: true
+  pipelineUser:
+    username: my-bot-username=dineshgitbot
   repository: nexus
   secretStorage: gsm
+  storage:
+  - name: logs
+    url: gs://logs-tf-jx-hardy-quail-f68ba35e18c1
+  - name: reports
+    url: gs://reports-tf-jx-hardy-quail-f68ba35e18c1
+  - name: repository
+    url: gs://repository-tf-jx-hardy-quail-f68ba35e18c1
   vault: {}
   webhook: lighthouse
